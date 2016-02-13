@@ -1,0 +1,111 @@
+html {
+    background: url("../img/FLUPER.RU_bumaga_tekstura_kletki_svetlyy.jpg") no-repeat center fixed;
+    background-size: cover;
+}
+
+body {
+    font-family: Sans-Serif;
+}
+
+h1 {
+    font-size: 4em;
+}
+
+h2 {
+    font-size: 2em;
+}
+
+h3 {
+    font-size: 1.2em;
+}
+
+#allContentContainer {
+    width: 500px;
+    margin: auto;
+}
+
+#header h1 {
+    text-align: left;
+    float: left;
+    vertical-align: middle;
+    margin: 20px 0 20px 0;
+    color: #B9C21D;
+}
+
+#scores {
+    text-align: right;
+    float: right;
+}
+
+#gameIntro {
+    clear: both;
+}
+
+#currentScore, #bestScore {
+    float: right;
+    margin: 10px;
+    padding: 5px;
+    text-align: center;
+    width: 70px;
+    background-color: #1DC278;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+#scores div h3 {
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+.scoreLabels {
+    color: #B9C21D;
+}
+
+#currentScoreValue, #bestScoreValue {
+    color: #E5F024;
+}
+
+.button {
+    border-top: 1px solid #dec745;
+    background: #65d67d;
+    background: -webkit-gradient(linear, left top, left bottom, from(#3e9c5e), to(#65d67d));
+    background: -webkit-linear-gradient(top, #3e9c5e, #65d67d);
+    background: -moz-linear-gradient(top, #3e9c5e, #65d67d);
+    background: -ms-linear-gradient(top, #3e9c5e, #65d67d);
+    background: -o-linear-gradient(top, #3e9c5e, #65d67d);
+    padding: 7px 14px;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    border-radius: 7px;
+    -webkit-box-shadow: rgba(0, 0, 0, 1) 0 1px 0;
+    -moz-box-shadow: rgba(0, 0, 0, 1) 0 1px 0;
+    box-shadow: rgba(0, 0, 0, 1) 0 1px 0;
+    text-shadow: rgba(0, 0, 0, .4) 0 1px 0;
+    color: white;
+    font-size: 16px;
+    font-family: Sans-Serif;
+    text-decoration: none;
+    vertical-align: middle;
+
+    margin: 10px 0;
+}
+
+.button:hover {
+    border-top-color: #7c8038;
+    background: #B9C21D;
+    color: #6a6a6a;
+}
+
+.button:active {
+    border-top-color: #1b435e;
+    background: #1b435e;
+}
+
+#gameIntro h3 {
+    float: left;
+}
+
+#gameIntro a {
+    float: right;
+}
