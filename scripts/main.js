@@ -13,9 +13,8 @@ function main() {
     $(document).keydown(moveAllTiles);
 }
 function moveAllTiles(event) {
-    var $tile = $("tile");
+    var $tile = $(".tile");
     switch (event.which) {
-
         // up
         case 38:
             $tile.animate({marginTop: '-=109px'}, 100);
