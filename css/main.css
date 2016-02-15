@@ -1,154 +1,242 @@
 html {
-    background: url("../img/FLUPER.RU_bumaga_tekstura_kletki_svetlyy.jpg") no-repeat center fixed;
-    background-size: cover;
+    background      : url("../img/FLUPER.RU_bumaga_tekstura_kletki_svetlyy.jpg") no-repeat center fixed;
+    background-size : cover;
 }
 
 body {
-    font-family: Sans-Serif;
+    font-family : Sans-Serif;
 }
 
 h1 {
-    font-size: 4em;
+    font-size : 4em;
 }
 
 h2 {
-    font-size: 2em;
+    font-size : 2em;
 }
 
 h3 {
-    font-size: 1.2em;
+    font-size : 1.2em;
 }
 
 #allContentContainer {
-    width: 500px;
-    margin: auto;
+    width  : 500px;
+    margin : auto;
 }
 
 #header h1 {
-    text-align: left;
-    float: left;
-    vertical-align: middle;
-    margin: 20px 0 20px 0;
-    color: #B9C21D;
+    text-align     : left;
+    float          : left;
+    vertical-align : middle;
+    margin         : 20px 0 20px 0;
+    color          : #B9C21D;
 }
 
 #scores {
-    text-align: right;
-    float: right;
+    text-align : right;
+    float      : right;
 }
 
 #gameIntro {
-    clear: both;
+    clear : both;
 }
 
 #currentScore, #bestScore {
-    float: right;
-    margin: 10px;
-    padding: 5px;
-    text-align: center;
-    width: 70px;
-    background-color: #1DC278;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    box-shadow: 2px 2px 1px gray;
+    float                 : right;
+    margin                : 10px;
+    padding               : 5px;
+    text-align            : center;
+    width                 : 70px;
+    background-color      : #1DC278;
+    -webkit-border-radius : 5px;
+    -moz-border-radius    : 5px;
+    border-radius         : 5px;
+    box-shadow            : 2px 2px 1px gray;
 }
 
 #scores div h3 {
-    margin-top: 12px;
-    margin-bottom: 12px;
+    margin-top    : 12px;
+    margin-bottom : 12px;
 }
 
 .scoreLabels {
-    color: #B9C21D;
+    color : #B9C21D;
 }
 
 #currentScoreValue, #bestScoreValue {
-    color: #E5F024;
+    color : #E5F024;
 }
 
 .button {
-    border-top: 1px solid #dec745;
-    background: #65d67d;
-    background: -webkit-gradient(linear, left top, left bottom, from(#3e9c5e), to(#65d67d));
-    background: -webkit-linear-gradient(top, #3e9c5e, #65d67d);
-    background: -moz-linear-gradient(top, #3e9c5e, #65d67d);
-    background: -ms-linear-gradient(top, #3e9c5e, #65d67d);
-    background: -o-linear-gradient(top, #3e9c5e, #65d67d);
-    padding: 7px 14px;
-    -webkit-border-radius: 7px;
-    -moz-border-radius: 7px;
-    border-radius: 7px;
-    -webkit-box-shadow: rgba(0, 0, 0, 1) 0 1px 0;
-    -moz-box-shadow: rgba(0, 0, 0, 1) 0 1px 0;
-    box-shadow: rgba(0, 0, 0, 1) 0 1px 0;
-    text-shadow: rgba(0, 0, 0, .4) 0 1px 0;
-    color: white;
-    font-size: 16px;
-    font-family: Sans-Serif;
-    text-decoration: none;
-    vertical-align: middle;
+    border-top            : 1px solid #DEC745;
+    background            : #65D67D;
+    background            : -webkit-gradient(linear, left top, left bottom, from(#3E9C5E), to(#65D67D));
+    background            : -webkit-linear-gradient(top, #3E9C5E, #65D67D);
+    background            : -moz-linear-gradient(top, #3E9C5E, #65D67D);
+    background            : -ms-linear-gradient(top, #3E9C5E, #65D67D);
+    background            : -o-linear-gradient(top, #3E9C5E, #65D67D);
+    padding               : 7px 14px;
+    -webkit-border-radius : 7px;
+    -moz-border-radius    : 7px;
+    border-radius         : 7px;
+    -webkit-box-shadow    : rgba(0, 0, 0, 1) 0 1px 0;
+    -moz-box-shadow       : rgba(0, 0, 0, 1) 0 1px 0;
+    box-shadow            : rgba(0, 0, 0, 1) 0 1px 0;
+    text-shadow           : rgba(0, 0, 0, .4) 0 1px 0;
+    color                 : white;
+    font-size             : 16px;
+    font-family           : Sans-Serif;
+    text-decoration       : none;
+    vertical-align        : middle;
 
-    margin: 10px 0;
+    margin                : 10px 0;
 }
 
 .button:hover {
-    border-top-color: #7c8038;
-    background: #B9C21D;
-    color: #6a6a6a;
+    border-top-color : #7C8038;
+    background       : #B9C21D;
+    color            : #6A6A6A;
 }
 
 .button:active {
-    border-top-color: #1b435e;
-    background: #1b435e;
+    border-top-color : #1B435E;
+    background       : #1B435E;
 }
 
 #gameIntro h3 {
-    float: left;
+    float : left;
 }
 
 #gameIntro a {
-    float: right;
+    float : right;
 }
 
 #gameBoard {
-    clear: both;
-    background-color: #858585;
-    margin: auto;
-    display: table;
-    border-collapse: separate;
-    border-spacing: 5px;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    position: relative;
+    clear                 : both;
+    background-color      : #858585;
+    margin                : auto;
+    display               : table;
+    border-collapse       : separate;
+    border-spacing        : 5px;
+    -webkit-border-radius : 5px;
+    -moz-border-radius    : 5px;
+    border-radius         : 5px;
+    position              : relative;
 }
 
 .boardRow {
     /*border: 2px solid black;*/
-    width: 440px;
-    margin: 0;
-    padding: 0;
-    display: table-row;
+    width   : 440px;
+    margin  : 0;
+    padding : 0;
+    display : table-row;
 }
 
 .boardCell {
-    height: 100px;
-    width: 100px;
-    background-color: #BABABA;
-    margin: 3px;
-    border-radius: 5px;
-    border: 2px solid #A3A3A3;
-    display: table-cell;
+    height           : 100px;
+    width            : 100px;
+    background-color : #BABABA;
+    margin           : 3px;
+    border-radius    : 5px;
+    border           : 2px solid #A3A3A3;
+    display          : table-cell;
 }
 
 .tile {
-    height: 104px;
-    width: 104px;
-    background-color: #1DC278;
-    border-radius: 5px;
-    box-shadow: 2px 2px 1px gray;
-    position: absolute;
-    top: 4px;
-    left: 4px;
+    height           : 104px;
+    width            : 104px;
+    background-color : #1DC278;
+    border-radius    : 5px;
+    box-shadow       : 2px 2px 1px gray;
+    position         : absolute;
+}
+
+/* 00 is the top left corner of the grid. first digit go down, second digit go right.
+    00 01 02 03
+    10 11 12 13
+    20 21 22 23
+    30 31 32 33
+*/
+/* Column 1: */
+.tile00 {
+    top  : 4px;
+    left : 4px;
+}
+
+.tile10 {
+    top  : 113px;
+    left : 4px;
+}
+
+.tile20 {
+    top  : 222px;
+    left : 4px;
+}
+
+.tile30 {
+    top  : 331px;
+    left : 4px;
+}
+
+/* Column 2: */
+.tile01 {
+    top  : 4px;
+    left : 113px;
+}
+
+.tile11 {
+    top  : 113px;
+    left : 113px;
+}
+
+.tile21 {
+    top  : 222px;
+    left : 113px;
+}
+
+.tile31 {
+    top  : 331px;
+    left : 113px;
+}
+
+/* Column 3: */
+.tile02 {
+    top  : 4px;
+    left : 222px;
+}
+
+.tile12 {
+    top  : 113px;
+    left : 222px;
+}
+
+.tile22 {
+    top  : 222px;
+    left : 222px;
+}
+
+.tile32 {
+    top  : 331px;
+    left : 222px;
+}
+
+/* Column 4: */
+.tile03 {
+    top  : 4px;
+    left : 331px;
+}
+
+.tile13 {
+    top  : 113px;
+    left : 331px;
+}
+
+.tile23 {
+    top  : 222px;
+    left : 331px;
+}
+
+.tile33 {
+    top  : 331px;
+    left : 331px;
 }
