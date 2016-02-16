@@ -9,55 +9,89 @@
 $(document).ready(main);
 
 function main() {
-    placeSpawningTile();
+    spawnNewTile();
+    spawnNewTile();
     $(document).keydown(moveAllTiles);
 }
+
 function moveAllTiles(event) {
-    var $tile = $(".tile");
-    switch (event.which) {
-        // up
-        case 38:
-            $tile.animate({marginTop: '-=109px'}, 100);
-            break;
-        // down
-        case 40:
-            $tile.animate({marginTop: '+=109px'}, 100);
-            break;
-        // left
-        case 37:
-            $tile.animate({marginLeft: '-=109px'}, 100);
-            break;
-        // right
-        case 39:
-            $tile.animate({marginLeft: '+=109px'}, 100);
-            break;
+    $(".tile").each(moveOneTile);
+
+    function moveOneTile(index) {
+        var currentPosition = {
+                column: null,
+                row   : null
+            },
+            $this           = $(this),
+            oldClassName,
+            newClassName;
+
+        // get the 1st and 2nd digit of the current coordinate class name
+        currentPosition.column = $this.attr('class').split(' ')[1][0];
+        currentPosition.row    = $this.attr('class').split(' ')[1][1];
+
+        oldClassName = currentPosition.column + '' + currentPosition.row;
+        $this.removeClass(oldClassName);
+
+        switch (event.which) {
+            // up
+            case 38:
+                if (currentPosition.column > 0) {
+                    $this.animate({marginTop: '-=109px'}, 100);
+                    currentPosition.column--;
+                }
+                break;
+            // down
+            case 40:
+                if (currentPosition.column < 3) {
+                    $this.animate({marginTop: '+=109px'}, 100);
+                    currentPosition.column++;
+                }
+                break;
+            // left
+            case 37:
+                if (currentPosition.row > 0) {
+                    $this.animate({marginLeft: '-=109px'}, 100);
+                    currentPosition.row--;
+                }
+                break;
+            // right
+            case 39:
+                if (currentPosition.row < 3) {
+                    $this.animate({marginLeft: '+=109px'}, 100);
+                    currentPosition.row++;
+                }
+                break;
+        }
+        newClassName = currentPosition.column + '' + currentPosition.row;
+        $this.addClass(newClassName);
     }
+
+    //function tileNameWildCard(index, className) {
+    //    return (className.match(/[0-3][0-3]/g) || []).join(' ');
+    //}
 }
 
-function placeSpawningTile() {
-    var $gameBoard = $('#gameBoard');
+function spawnNewTile() {
     /*
-     randomly generate 2 sets of coordinates. Note: the following method has a flaw:
+     randomly generate 1 set of coordinates. Note: the following method has a flaw:
      say if we want to generate a random number between [0, 3]; the probability of getting
      a 1 is the lowest (about 18%); the probability of getting the other 3 are roughly equal.
      */
-    var col1 = Math.floor(Math.random() * 4),
-        row1 = Math.floor(Math.random() * 4),
-        col2 = Math.floor(Math.random() * 4),
-        row2 = Math.floor(Math.random() * 4);
+    var colNum          = Math.floor(Math.random() * 4),
+        rowNum          = Math.floor(Math.random() * 4),
+        colDisplacement = colNum * 109,
+        rowDisplacement = rowNum * 109;
+    // create 1 new tile using the coordinates generated.
+    var $newTile = $("<div>", {class: "tile"});
+    $newTile.addClass(colNum + rowNum); // column based coordinate used as class name.
+    $('#gameBoard').append($newTile);
 
-    // make sure those 2 tiles are not on top of each other!
-    while (col1 === col2 && row1 === row2) {
-        col2 = Math.floor(Math.random() * 4);
-        row2 = Math.floor(Math.random() * 4);
-    }
-
-    // generate 2 tiles using the coordinates generated.
-    var $tile1 = $("<div>", {class: "tile"});
-    $tile1.addClass("tile" + col1 + row1);
-    $gameBoard.append($tile1);
-
-    var $tile2 = $("<div>", {class: "tile"});
-    $tile2.addClass("tile" + col2 + row2);
-    $gameBoard.append($tile2);
+    // move it to a random place.
+    $newTile.animate({
+        marginTop : '+=' + colDisplacement + 'px',
+        marginLeft: '+=' + rowDisplacement + 'px'
+    }, 0);
+    var className = colNum + '' + rowNum;
+    $newTile.addClass(className);
 }
