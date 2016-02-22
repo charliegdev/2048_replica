@@ -1,2 +1,21 @@
-# 2048_replica
-My own replica of the popular 2048 game. I borrowed the ideas and inspirations from the existing 2048 games, but the code here are build from the ground up.
+# 2048 Replica
+This is my own replica of the popular game [2048](https://gabrielecirulli.github.io/2048/).
+I have written all the source code from the ground up (not including jQuery library, of course).
+The project is not done yet, but you can view the source code here!
+
+## Progress
+- UI (mostly) 
+- Tile movement
+- Collision detection (somewhat)
+
+## Goals
+- [ ] Second half of collision detection
+- [ ] Tile merge algorithm
+- [ ] Score
+- [ ] Github page
+
+## Issues
+- [ ] Might redo interface with Bootstrap
+- [ ] Zooming in/out the page will leave gaps between tile and board grid
+- [ ] The current way of tile movement utilize marginTop/marginLeft, that might be improved
+
