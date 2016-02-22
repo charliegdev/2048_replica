@@ -15,7 +15,10 @@ function main() {
 }
 
 function moveAllTiles(event) {
+    var MOVE_DISTANCE = 109;
+
     $(".tile").each(moveOneTile);
+
 
     function moveOneTile(index) {
         var currentPosition = {
@@ -37,29 +40,32 @@ function moveAllTiles(event) {
             // up
             case 38:
                 if (currentPosition.column > 0) {
-                    $this.animate({marginTop: '-=109px'}, 100);
-                    currentPosition.column--;
+                    //console.log(currentPosition.column);
+                    //$this.animate({marginTop: '-=109px'}, 100);
+                    //currentPosition.column--;
+                    moveToEdge($this, 'up', currentPosition.column);
+                    currentPosition.column = 0;
                 }
                 break;
             // down
             case 40:
                 if (currentPosition.column < 3) {
-                    $this.animate({marginTop: '+=109px'}, 100);
-                    currentPosition.column++;
+                    moveToEdge($this, 'down', currentPosition.column);
+                    currentPosition.column = 3;
                 }
                 break;
             // left
             case 37:
                 if (currentPosition.row > 0) {
-                    $this.animate({marginLeft: '-=109px'}, 100);
-                    currentPosition.row--;
+                    moveToEdge($this, 'left', currentPosition.row);
+                    currentPosition.row = 0;
                 }
                 break;
             // right
             case 39:
                 if (currentPosition.row < 3) {
-                    $this.animate({marginLeft: '+=109px'}, 100);
-                    currentPosition.row++;
+                    moveToEdge($this, 'right', currentPosition.row);
+                    currentPosition.row = 3;
                 }
                 break;
         }
@@ -70,6 +76,17 @@ function moveAllTiles(event) {
     //function tileNameWildCard(index, className) {
     //    return (className.match(/[0-3][0-3]/g) || []).join(' ');
     //}
+    function moveToEdge(tile, direction, gridNum) {
+        if (direction === 'up') {
+            tile.animate({marginTop: '-=' + gridNum * MOVE_DISTANCE + 'px'}, 100);
+        } else if (direction === 'down') {
+            tile.animate({marginTop: '+=' + (3 - gridNum) * MOVE_DISTANCE + 'px'}, 100);
+        } else if (direction === 'left') {
+            tile.animate({marginLeft: '-=' + gridNum * MOVE_DISTANCE + 'px'}, 100);
+        } else if (direction === 'right') {
+            tile.animate({marginLeft: '+=' + (3 - gridNum) * MOVE_DISTANCE + 'px'}, 100);
+        }
+    }
 }
 
 function spawnNewTile() {
