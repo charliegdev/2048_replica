@@ -6,28 +6,27 @@
  Each movement is 109px long.
  Spawning: distance to any anchor point: 4px top, 4px left.
  */
-"use strict";
 $(document).ready(main);
 
 function main() {
+    "use strict";
     spawnTwoNewTiles();
     $(document).keydown(moveAllTiles);
 }
 
 function moveAllTiles(event) {
+    "use strict";
     const MOVE_DISTANCE = 109;
-    let tilesMoved      = false;
-    if ((event.which === 38) || (event.which === 40)) {
-        var $zeroRow   = $("[class*=' 0']"),
-            $firstRow  = $("[class*=' 1']"),
-            $secondRow = $("[class*=' 2']"),
-            $thirdRow  = $("[class*=' 3']");
-    } else {
-        var $zeroColumn   = $("[class$='0']"),
-            $firstColumn  = $("[class$='1']"),
-            $secondColumn = $("[class$='2']"),
-            $thirdColumn  = $("[class$='3']");
-    }
+    let tilesMoved      = false,
+          $zeroRow      = $("[class*=' 0']"),
+          $firstRow     = $("[class*=' 1']"),
+          $secondRow    = $("[class*=' 2']"),
+          $thirdRow     = $("[class*=' 3']"),
+          $zeroColumn   = $("[class$='0']"),
+          $firstColumn  = $("[class$='1']"),
+          $secondColumn = $("[class$='2']"),
+          $thirdColumn  = $("[class$='3']");
+
     switch (event.which) {
         // up
         case 38:
@@ -69,7 +68,8 @@ function moveAllTiles(event) {
                 row   : null,
                 column: null
             },
-            $this           = $(this),
+            // since this function is called inside .each(), 'this' refers to the DOM element.
+            $this           = $(this), // jshint ignore: line
             oldClassName,
             newClassName;
 
@@ -161,6 +161,7 @@ function moveAllTiles(event) {
 }
 
 function spawnNewTile() {
+    "use strict";
     /*
      randomly generate 1 set of coordinates. Note: the following method has a flaw:
      say if we want to generate a random number between [0, 3]; the probability of getting
@@ -192,6 +193,7 @@ function spawnNewTile() {
 }
 
 function spawnTwoNewTiles() {
+    "use strict";
     // a temporary solution for the tile spawning racing condition. We use 1 function to create 2!
     let rowNum1, colNum1, rowNum2, colNum2,
         $gameBoard = $('#gameBoard');

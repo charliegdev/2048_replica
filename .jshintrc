@@ -1,0 +1,21 @@
+{
+  "freeze": true,
+  "strict": true,
+  "noempty": true,
+  "noarg": true,
+  "eqeqeq": true,
+  "newcap": true,
+  "nocomma": true,
+  "immed": true,
+  "nonbsp": true,
+  "browser": true,
+  "bitwise": true,
+  "curly": true,
+  "undef": true,
+  "nonew": true,
+  "forin": true,
+  "esnext": true,
+  "globals": {
+    "$": false
+  }
+}
