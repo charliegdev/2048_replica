@@ -5,11 +5,11 @@ The project is not done yet, but you can view the source code here!
 
 ## Progress
 - UI (mostly) 
+- Tile Spawning
 - Tile movement
-- Collision detection (somewhat)
+- Collision detection 
 
 ## Goals
-- [ ] Second half of collision detection
 - [ ] Tile merge algorithm
 - [ ] Score
 - [ ] Github page
