@@ -11,7 +11,7 @@ $(document).ready(main);
 
 function main() {
     spawnNewTile();
-    spawnNewTile();
+    window.setTimeout(spawnNewTile, 50);
     $(document).keydown(moveAllTiles);
 }
 
@@ -156,20 +156,27 @@ function spawnNewTile() {
      say if we want to generate a random number between [0, 3]; the probability of getting
      a 1 is the lowest (about 18%); the probability of getting the other 3 are roughly equal.
      */
-    let colNum          = Math.floor(Math.random() * 4),
-        rowNum          = Math.floor(Math.random() * 4),
-        colDisplacement = colNum * 109,
-        rowDisplacement = rowNum * 109;
-    // create 1 new tile using the coordinates generated.
-    let $newTile = $("<div>", {class: "tile"});
-    $newTile.addClass(colNum + rowNum); // column based coordinate used as class name.
+    let rowNum, colNum;
+    // generate a row/column coordinate that we don't already have
+    do {
+        rowNum = Math.floor(Math.random() * 4);
+        colNum = Math.floor(Math.random() * 4);
+    } while ($(rowNum + '' + colNum).length !== 0);
+
+    // create this tile and give it the correct class name
+    let $newTile  = $("<div>", {class: "tile"}),
+        className = rowNum + '' + colNum;
+    $newTile.addClass(className);
+
+    // move the tile to its location.
+    let rowDisplacement = rowNum * 109,
+        colDisplacement = colNum * 109;
     $('#gameBoard').append($newTile);
 
     // move it to a random place.
     $newTile.animate({
-        marginTop : '+=' + colDisplacement + 'px',
-        marginLeft: '+=' + rowDisplacement + 'px'
+        marginTop : '+=' + rowDisplacement + 'px',
+        marginLeft: '+=' + colDisplacement + 'px'
     }, 0);
-    let className = colNum + '' + rowNum;
-    $newTile.addClass(className);
+
 }
