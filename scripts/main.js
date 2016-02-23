@@ -17,30 +17,49 @@ function main() {
 
 function moveAllTiles(event) {
     const MOVE_DISTANCE = 109;
+    if ((event.which === 38) || (event.which === 40)) {
+        var $zeroRow   = $("[class*=' 0']"),
+            $firstRow  = $("[class*=' 1']"),
+            $secondRow = $("[class*=' 2']"),
+            $thirdRow  = $("[class*=' 3']");
+    } else {
+        var $zeroColumn   = $("[class$='0']"),
+            $firstColumn  = $("[class$='1']"),
+            $secondColumn = $("[class$='2']"),
+            $thirdColumn  = $("[class$='3']");
+    }
     switch (event.which) {
-        /*  TODO: when an arrow key is pressed, instead of using $(".tile").each(moveOneTile), we should do it row by row,
-         or column by column.
-         */
-
         // up
         case 38:
-
+            //when up is pressed, first handle 1st row, then 2nd row, then 3rd row.
+            $firstRow.each(moveOneTile);
+            $secondRow.each(moveOneTile);
+            $thirdRow.each(moveOneTile);
             break;
         // down
         case 40:
-
+            // when down is pressed, first handle 2nd row, then 1st row, then 0th row.
+            $secondRow.each(moveOneTile);
+            $firstRow.each(moveOneTile);
+            $zeroRow.each(moveOneTile);
             break;
         // left
         case 37:
-
+            // when left is pressed, first handle 1st column, then 2nd column, then 3rd column.
+            $firstColumn.each(moveOneTile);
+            $secondColumn.each(moveOneTile);
+            $thirdColumn.each(moveOneTile);
             break;
         // right
         case 39:
-
+            // when right is pressed, first handle 2nd column, then 1st column, then 0th column.
+            $secondColumn.each(moveOneTile);
+            $firstColumn.each(moveOneTile);
+            $zeroColumn.each(moveOneTile);
             break;
     }
 
-    $(".tile").each(moveOneTile);
+    //$(".tile").each(moveOneTile);
 
     function moveOneTile(index) {
         let currentPosition = {
@@ -87,14 +106,14 @@ function moveAllTiles(event) {
                 }
                 break;
         }
-        console.log(currentPosition.row, currentPosition.column);
         newClassName = currentPosition.row + '' + currentPosition.column;
         $this.addClass(newClassName);
     }
 
-    //function tileNameWildCard(index, className) {
-    //    return (className.match(/[0-3][0-3]/g) || []).join(' ');
-    //}
+    function tileNameWildCard(index, className) {
+        return (className.match(/[0-3][0-3]/g) || []).join(' ');
+    }
+
     function moveToEdge(tile, direction, rowNum, columnNum) {
         if (direction === 'up') {
             for (let i = 0; i < rowNum; i++) {
