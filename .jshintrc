@@ -16,6 +16,7 @@
   "forin": true,
   "esnext": true,
   "globals": {
-    "$": false
+    "$": false,
+    "console": false
   }
 }
