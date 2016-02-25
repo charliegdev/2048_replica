@@ -27,7 +27,6 @@ function spawnNewTile() {
         marginTop : '+=' + rowDisplacement + 'px',
         marginLeft: '+=' + colDisplacement + 'px'
     }, 0);
-
 }
 
 function spawnTwoNewTiles() {

@@ -157,11 +157,16 @@ h3 {
     opacity          : 0.5;
 }
 
-/* 00 is the top left corner of the grid. first digit go down, second digit go right.
-    00 01 02 03
-    10 11 12 13
-    20 21 22 23
-    30 31 32 33
+/* 00 is the top left corner of the grid. first digit go down (row number), second digit go right (column number).
+    +----+----+----+----+
+    | 00 | 01 | 02 | 03 |
+    +----+----+----+----+
+    | 10 | 11 | 12 | 13 |
+    +----+----+----+----+
+    | 20 | 21 | 22 | 23 |
+    +----+----+----+----+
+    | 30 | 31 | 32 | 33 |
+    +----+----+----+----+
 */
 
 .value2 {

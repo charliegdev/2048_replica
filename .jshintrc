@@ -17,6 +17,8 @@
   "esnext": true,
   "globals": {
     "$": false,
-    "console": false
+    "console": false,
+    "spawnTwoNewTiles": false,
+    "moveAllTiles": false
   }
 }

@@ -7,7 +7,6 @@
  Spawning: distance to any anchor point: 4px top, 4px left.
  */
 $(document).ready(main);
-
 function main() {
     "use strict";
     spawnTwoNewTiles();
