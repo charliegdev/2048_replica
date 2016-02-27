@@ -8,9 +8,10 @@ The project is not done yet, but you can view the source code here!
 - Tile Spawning
 - Tile movement
 - Collision detection 
+- Tile merge algorithm
 
 ## Goals
-- [ ] Tile merge algorithm
+- [ ] Display correct number in tile
 - [ ] Score
 - [ ] Github page
 
