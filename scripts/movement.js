@@ -4,7 +4,7 @@
 function moveAllTiles(event) {
     "use strict";
     const MOVE_DISTANCE = 109;
-    let anyTileMoved    = false,
+    let isAnyTileMoved  = false,
           $zeroRow      = $("[class*=' 0']"),
           $firstRow     = $("[class*=' 1']"),
           $secondRow    = $("[class*=' 2']"),
@@ -56,8 +56,7 @@ function moveAllTiles(event) {
             break;
     }
 
-
-    if (anyTileMoved === true && $('.tile').length < 16) {
+    if (isAnyTileMoved === true && $('.tile').length < 16) {
         window.setTimeout(spawnNewTile, 200);
     }
 
@@ -101,130 +100,201 @@ function moveAllTiles(event) {
                         $this.remove();
                     } else {
                         currentPosition.row = newRow;
+                        newClassName        = `${currentPosition.row}${currentPosition.column}`;
+                        $this.addClass(newClassName);
                     }
                 }
                 break;
             // down
             case 40:
                 if (currentPosition.row < 3) {
-                    currentPosition.row = moveToEdge($this, 'down', currentPosition.row, currentPosition.column);
+                    let newRow = moveToEdge($this, 'down', currentPosition.row, currentPosition.column);
+                    if (newRow === -1) {
+                        $this.remove();
+                    } else {
+                        currentPosition.row = newRow;
+                        newClassName        = `${currentPosition.row}${currentPosition.column}`;
+                        $this.addClass(newClassName);
+                    }
                 }
                 break;
             // left
             case 37:
                 if (currentPosition.column > 0) {
-                    currentPosition.column = moveToEdge($this, 'left', currentPosition.row, currentPosition.column);
+                    let newColumn = moveToEdge($this, 'left', currentPosition.row, currentPosition.column);
+                    if (newColumn === -1) {
+                        $this.remove();
+                    } else {
+                        currentPosition.column = newColumn;
+                        newClassName           = `${currentPosition.row}${currentPosition.column}`;
+                        $this.addClass(newClassName);
+                    }
                 }
                 break;
             // right
             case 39:
                 if (currentPosition.column < 3) {
-                    currentPosition.column = moveToEdge($this, 'right', currentPosition.row, currentPosition.column);
+                    let newColumn = moveToEdge($this, 'right', currentPosition.row, currentPosition.column);
+                    if (newColumn === -1) {
+                        $this.remove();
+                    } else {
+                        currentPosition.column = newColumn;
+                        newClassName           = `${currentPosition.row}${currentPosition.column}`;
+                        $this.addClass(newClassName);
+                    }
                 }
                 break;
         }
-        newClassName = `${currentPosition.row}${currentPosition.column}`;
-        $this.addClass(newClassName);
     }
 
     function moveToEdge(tile, direction, rowNum, columnNum) {
-        let thisTileMoved = false;
-        if (direction === 'up') {
-            for (let i = 0; i < rowNum; i++) {
-                if ($(`.${i}${columnNum}`).length === 0) {
-                    // $('.xy').length === 0 means no tile is currently occupying the xy grid.
-                    if (i > 0) {
-                        /*
-                         if i === 0, we're moving all the way to the edge, and no tile to merge with. No point try merging.
-                         Case 1: There is 1 or 2 empty grid between current tile and the tile we want to merge.
-                         +---+                      +---+                       +---+
-                         | 4 |                      | 4 |                       | 4 |
-                         +---+                      +---+                       +---+
-                         | 0 |<--i = 1              | 2 |                       | 0 |  <--  i = 1
-                         +---+                      +---+                       +---+
-                         | 4 |<--rowNum = 2         | 0 |<-- i = 2              | 0 |
-                         +---+                      +---+                       +---+
-                         | 0 |                      | 2 |<-- rowNum = 3         | 4 |  <--  rowNum = 3
-                         +---+                      +---+                       +---+
-                         rowNum-i==1                rowNum-i==1                  rowNum-i==2
-                         */
-                        thisTileMoved = tryMergeCase1(tile, 'up', i, rowNum, columnNum, MOVE_DISTANCE);
-                        /*
-                         tryMergeCase1: if we cannot merge a tile, we won't move it at all. If the attempt is
-                         successful (they have the same value), tryMergeCase1 will move current tile and return 1.
-                         */
-                        if (thisTileMoved === true) {
-                            // return -1 so moveOneTile() will remove this tile from DOM.
-                            anyTileMoved = true;
-                            return -1;
+        let isThisTileMoved = false;
+        switch (direction) {
+            case 'up':
+                for (let i = 0; i < rowNum; i++) {
+                    if ($(`.${i}${columnNum}`).length === 0) {
+                        // $('.xy').length === 0 means no tile is currently occupying the xy grid.
+                        if (i > 0) {
+                            /*
+                             if i === 0, we're moving all the way to the edge, and no tile to merge with. No point try merging.
+                             Case 1: There is 1 or 2 empty grid between current tile and the tile we want to merge.
+                             +---+                      +---+                       +---+
+                             | 4 |                      | 4 |                       | 4 |
+                             +---+                      +---+                       +---+
+                             | 0 |<-- i = 1             | 2 |                       | 0 |  <--  i = 1
+                             +---+                      +---+                       +---+
+                             | 4 |<-- rowNum = 2        | 0 |<-- i = 2              | 0 |
+                             +---+                      +---+                       +---+
+                             | 0 |                      | 2 |<-- rowNum = 3         | 4 |  <--  rowNum = 3
+                             +---+                      +---+                       +---+
+                             rowNum-i==1                rowNum-i==1                  rowNum-i==2
+                             */
+                            isThisTileMoved = tryMergeCase1(tile, 'up', i, rowNum, columnNum, MOVE_DISTANCE);
+                            /*
+                             tryMergeCase1: if we cannot merge a tile, we won't move it at all. If the attempt is
+                             successful (they have the same value), tryMergeCase1 will move current tile and return true.
+                             */
+                            if (isThisTileMoved === true) {
+                                // return -1 so moveOneTile() will remove this tile from DOM.
+                                isAnyTileMoved = true;
+                                return -1;
+                            }
                         }
+                        /*
+                         if we reach here, either i === 0, and we just found an empty grid on the edge,
+                         or we attempted to merge but failed, so w're just gonna move this tile to the empty space.
+                         +---+                          +---+
+                         | 0 |    i === 0               | 4 |
+                         +---+                          +---+
+                         | 0 |                          | 2 |
+                         +---+                          +---+
+                         | 2 |                          | 0 |   <-- i === 2, but merge failed. Just move.
+                         +---+                          +---+
+                         | 0 |                          | 4 |
+                         +---+                          +---+
+                         */
+                        tile.animate({marginTop: '-=' + (rowNum - i) * MOVE_DISTANCE + 'px'}, 100);
+                        isAnyTileMoved = true;
+                        return i;
                     }
-                    /*
-                     if we reach here, either i === 0, and we just found an empty grid on the edge,
-                     or we attempted to merge but failed, so w're just gonna move this tile to the empty space.
-                     +---+                          +---+
-                     | 0 |    i === 0               | 4 |
-                     +---+                          +---+
-                     | 0 |                          | 2 |
-                     +---+                          +---+
-                     | 2 |                          | 0 |   <-- i === 2, but merge failed. Just move.
-                     +---+                          +---+
-                     | 0 |                          | 4 |
-                     +---+                          +---+
-                     */
-                    tile.animate({marginTop: '-=' + (rowNum - i) * MOVE_DISTANCE + 'px'}, 100);
-                    anyTileMoved = true;
-                    return i;
                 }
-            }
-            /*
-             If we get out of the for-loop, we know there is no empty grid between our current tile and the tile
-             we attempt to merge with. This is Case 2:
-             +---+                                  +---+
-             | 4 |                                  | 8 |
-             +---+                                  +---+
-             | 2 |                                  | 4 |
-             +---+                                  +---+
-             | 4 |                                  | 2 |
-             +---+                                  +---+
-             | 4 |                                  | 4 |
-             +---+                                  +---+
-             Merge the 2 "4"'s.                  Nothing we can do.
-             */
-            thisTileMoved = tryMergeCase2(tile, 'up', rowNum, columnNum, MOVE_DISTANCE);
-            if (thisTileMoved === true) {
-                anyTileMoved = true;
-                return -1;
-            }
-            return rowNum;
-        }
-        else if (direction === 'down') {
-            for (let i = 3; i > rowNum; i--) {
-                if ($(`.${i}${columnNum}`).length === 0) {
-                    tile.animate({marginTop: '+=' + (i - rowNum) * MOVE_DISTANCE + 'px'}, 100);
-                    anyTileMoved = true;
-                    return i;
+                /*
+                 If we get out of the for-loop, we know there is no empty grid between our current tile and the tile
+                 we attempt to merge with. This is Case 2:
+                 +---+                                  +---+
+                 | 4 |                                  | 8 |
+                 +---+                                  +---+
+                 | 2 |                                  | 4 |
+                 +---+                                  +---+
+                 | 4 |                                  | 2 |
+                 +---+                                  +---+
+                 | 4 |                                  | 4 |
+                 +---+                                  +---+
+                 Case 2: Merge the 2 "4"'s.            Nothing we can do.
+                 */
+                if (rowNum > 0) {
+                    isThisTileMoved = tryMergeCase2(tile, 'up', rowNum, columnNum, MOVE_DISTANCE);
                 }
-            }
-            return rowNum;
-        } else if (direction === 'left') {
-            for (let j = 0; j < columnNum; j++) {
-                if ($(`.${rowNum}${j}`).length === 0) {
-                    tile.animate({marginLeft: '-=' + (columnNum - j) * MOVE_DISTANCE + 'px'}, 100);
-                    anyTileMoved = true;
-                    return j;
+                if (isThisTileMoved === true) {
+                    isAnyTileMoved = true;
+                    return -1;
                 }
-            }
-            return columnNum;
-        } else if (direction === 'right') {
-            for (let j = 3; j > columnNum; j--) {
-                if ($(`.${rowNum}${j}`).length === 0) {
-                    tile.animate({marginLeft: '+=' + (j - columnNum) * MOVE_DISTANCE + 'px'}, 100);
-                    anyTileMoved = true;
-                    return j;
+                return rowNum;
+
+            case 'down':
+                for (let i = 3; i > rowNum; i--) {
+                    if ($(`.${i}${columnNum}`).length === 0) {
+                        if (i < 3) {
+                            isThisTileMoved = tryMergeCase1(tile, 'down', i, rowNum, columnNum, MOVE_DISTANCE);
+                            if (isThisTileMoved === true) {
+                                // return -1 so moveOneTile() will remove this tile from DOM.
+                                isAnyTileMoved = true;
+                                return -1;
+                            }
+                        }
+                        tile.animate({marginTop: '+=' + (i - rowNum) * MOVE_DISTANCE + 'px'}, 100);
+                        isAnyTileMoved = true;
+                        return i;
+                    }
                 }
-            }
-            return columnNum;
+                if (rowNum < 3) {
+                    isThisTileMoved = tryMergeCase2(tile, 'down', rowNum, columnNum, MOVE_DISTANCE);
+                }
+                if (isThisTileMoved === true) {
+                    isAnyTileMoved = true;
+                    return -1;
+                }
+                return rowNum;
+
+            case 'left':
+                for (let j = 0; j < columnNum; j++) {
+                    if ($(`.${rowNum}${j}`).length === 0) {
+                        if (j > 0) {
+                            isThisTileMoved = tryMergeCase1(tile, 'left', j, rowNum, columnNum, MOVE_DISTANCE);
+                            if (isThisTileMoved === true) {
+                                // return -1 so moveOneTile() will remove this tile from DOM.
+                                isAnyTileMoved = true;
+                                return -1;
+                            }
+                        }
+                        tile.animate({marginLeft: '-=' + (columnNum - j) * MOVE_DISTANCE + 'px'}, 100);
+                        isAnyTileMoved = true;
+                        return j;
+                    }
+                }
+                if (columnNum > 0) {
+                    isThisTileMoved = tryMergeCase2(tile, 'left', rowNum, columnNum, MOVE_DISTANCE);
+                }
+                if (isThisTileMoved === true) {
+                    isAnyTileMoved = true;
+                    return -1;
+                }
+                return columnNum;
+
+            case 'right':
+                for (let j = 3; j > columnNum; j--) {
+                    if ($(`.${rowNum}${j}`).length === 0) {
+                        if (j < 3) {
+                            isThisTileMoved = tryMergeCase1(tile, 'right', j, rowNum, columnNum, MOVE_DISTANCE);
+                            if (isThisTileMoved === true) {
+                                // return -1 so moveOneTile() will remove this tile from DOM.
+                                isAnyTileMoved = true;
+                                return -1;
+                            }
+                        }
+                        tile.animate({marginLeft: '+=' + (j - columnNum) * MOVE_DISTANCE + 'px'}, 100);
+                        isAnyTileMoved = true;
+                        return j;
+                    }
+                }
+                if (columnNum < 3) {
+                    isThisTileMoved = tryMergeCase2(tile, 'right', rowNum, columnNum, MOVE_DISTANCE);
+                }
+                if (isThisTileMoved === true) {
+                    isAnyTileMoved = true;
+                    return -1;
+                }
+                return columnNum;
         }
     }
 }

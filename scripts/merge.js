@@ -14,20 +14,66 @@ function tryMergeCase1(tile, direction, ij, row, column, moveDistance) {
      */
 
     "use strict";
-    let $tileAbove      = $(`.${ij - 1}${column}`),
-        aboveClassArray = $tileAbove.attr('class').split(' '),
-        abovePosition   = aboveClassArray[2],
-        aboveValue      = aboveClassArray[1].slice(5),
-        currentValue    = tile.attr('class').split(' ')[1].slice(5);
-    if (aboveValue === currentValue) {
-        //this tile and the tile above it has the same value. merge them.
-        $tileAbove.attr('class', function (index, attr) {
-            return `tile value${aboveValue * 2} ${abovePosition}`;
-        });
-        tile.animate({marginTop: '-=' + (row - ij + 1) * moveDistance + 'px'}, 100);
-        return true;
+    let currentValue = tile.attr('class').split(' ')[1].slice(5);
+    switch (direction) {
+        case 'up':
+            let $tileAbove      = $(`.${ij - 1}${column}`),
+                aboveClassArray = $tileAbove.attr('class').split(' '),
+                abovePosition   = aboveClassArray[2],
+                aboveValue      = aboveClassArray[1].slice(5);
+            if (aboveValue === currentValue) {
+                //this tile and the tile above it has the same value. merge them.
+                $tileAbove.attr('class', function (index, attr) {
+                    return `tile value${aboveValue * 2} ${abovePosition}`;
+                });
+                tile.animate({marginTop: '-=' + (row - ij + 1) * moveDistance + 'px'}, 100);
+                return true;
+            }
+            return false;
+
+        case 'down':
+            let $tileBelow      = $(`.${ij + 1}${column}`),
+                belowClassArray = $tileBelow.attr('class').split(' '),
+                belowPosition   = belowClassArray[2],
+                belowValue      = belowClassArray[1].slice(5);
+            if (belowValue === currentValue) {
+                $tileBelow.attr('class', function (index, attr) {
+                    return `tile value${belowValue * 2} ${belowPosition}`;
+                });
+                tile.animate({marginTop: '+=' + (ij - row + 1) * moveDistance + 'px'}, 100);
+                return true;
+            }
+            return false;
+
+        case 'left':
+            let $tileLeft      = $(`.${row}${ij - 1}`),
+                leftClassArray = $tileLeft.attr('class').split(' '),
+                leftPosition   = leftClassArray[2],
+                leftValue      = leftClassArray[1].slice(5);
+            if (leftValue === currentValue) {
+                $tileLeft.attr('class', function (index, attr) {
+                    return `tile value${leftValue * 2} ${leftPosition}`;
+                });
+                tile.animate({marginLeft: '-=' + (column - ij + 1) * moveDistance + 'px'}, 100);
+                return true;
+            }
+            return false;
+
+        case 'right':
+            let $tileRight      = $(`.${row}${ij + 1}`),
+                rightClassArray = $tileRight.attr('class').split(' '),
+                rightPosition   = rightClassArray[2],
+                rightValue      = rightClassArray[1].slice(5);
+            if (rightValue === currentValue) {
+                $tileRight.attr('class', function (index, attr) {
+                    return `tile value${rightValue * 2} ${rightPosition}`;
+                });
+                tile.animate({marginLeft: '+=' + (column - ij + 1) * moveDistance + 'px'}, 100);
+                return true;
+            }
+            return false;
     }
-    return false;
+
 }
 
 function tryMergeCase2(tile, direction, row, column, moveDistance) {
@@ -45,5 +91,68 @@ function tryMergeCase2(tile, direction, row, column, moveDistance) {
      +---+
      */
     "use strict";
-    console.log(`Case 2 Test: ${row}${column}`);
+    let currentValue = tile.attr('class').split(' ')[1].slice(5);
+    switch (direction) {
+        case 'up':
+            let $tileAbove      = $(`.${parseInt(row) - 1}${column}`),
+                aboveClassArray = $tileAbove.attr('class').split(' '),
+                abovePosition   = aboveClassArray[2],
+                aboveValue      = aboveClassArray[1].slice(5);
+
+            if (aboveValue === currentValue) {
+                $tileAbove.attr('class', function (index, attr) {
+                    return `tile value${aboveValue * 2} ${abovePosition}`;
+                });
+                tile.animate({marginTop: `-=${moveDistance}px`}, 100);
+                return true;
+            }
+            return false;
+
+        case 'down':
+            let $tileBelow = $(`.${parseInt(row) + 1}${column}`);
+            console.log($tileBelow);
+
+            let belowClassArray = $tileBelow.attr('class').split(' '),
+                belowPosition   = belowClassArray[2],
+                belowValue      = belowClassArray[1].slice(5);
+
+            if (belowValue === currentValue) {
+                $tileBelow.attr('class', function (index, attr) {
+                    return `tile value${belowValue * 2} ${belowPosition}`;
+                });
+                tile.animate({marginTop: `+=${moveDistance}px`}, 100);
+                return true;
+            }
+            return false;
+
+        case 'left':
+            let $tileLeft      = $(`.${row}${parseInt(column) - 1}`),
+                leftClassArray = $tileLeft.attr('class').split(' '),
+                leftPosition   = leftClassArray[2],
+                leftValue      = leftClassArray[1].slice(5);
+
+            if (leftValue === currentValue) {
+                $tileLeft.attr('class', function (index, attr) {
+                    return `tile value${leftValue * 2} ${leftPosition}`;
+                });
+                tile.animate({marginLeft: `-=${moveDistance}px`}, 100);
+                return true;
+            }
+            return false;
+
+        case 'right':
+            let $tileRight      = $(`.${row}${parseInt(column) + 1}`),
+                rightClassArray = $tileRight.attr('class').split(' '),
+                rightPosition   = rightClassArray[2],
+                rightValue      = rightClassArray[1].slice(5);
+
+            if (rightValue === currentValue) {
+                $tileRight.attr('class', function (index, attr) {
+                    return `tile value${rightValue * 2} ${rightPosition}`;
+                });
+                tile.animate({marginLeft: `+=${moveDistance}px`}, 100);
+                return true;
+            }
+            return false;
+    }
 }

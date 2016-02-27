@@ -1,5 +1,6 @@
 function spawnNewTile() {
     "use strict";
+
     /*
      randomly generate 1 set of coordinates. Note: the following method has a flaw:
      say if we want to generate a random number between [0, 3]; the probability of getting
@@ -10,7 +11,7 @@ function spawnNewTile() {
     do {
         rowNum = Math.floor(Math.random() * 4);
         colNum = Math.floor(Math.random() * 4);
-    } while ($(`.${rowNum}${colNum}`).length !== 0);
+    } while ($(`.${rowNum}${colNum}`).length !== 0 && $('.tile').length < 16); // guard against race condition
 
     // create this tile and give it the correct class name
     let $newTile  = $("<div>", {class: "tile value2"}),
