@@ -22,10 +22,11 @@ function tryMergeCase1(tile, direction, ij, row, column, moveDistance) {
                 abovePosition   = aboveClassArray[2],
                 aboveValue      = aboveClassArray[1].slice(5);
             if (aboveValue === currentValue) {
-                //this tile and the tile above it has the same value. merge them.
-                $tileAbove.attr('class', function (index, attr) {
-                    return `tile value${aboveValue * 2} ${abovePosition}`;
-                });
+                // this tile and the tile above it has the same value. merge them.
+                // double the text
+                $tileAbove.children().text((index, text) => aboveValue * 2);
+                // change class name
+                $tileAbove.attr('class', (index, attr) => `tile value${aboveValue * 2} ${abovePosition}`);
                 tile.animate({marginTop: '-=' + (row - ij + 1) * moveDistance + 'px'}, 100);
                 return true;
             }
@@ -37,9 +38,8 @@ function tryMergeCase1(tile, direction, ij, row, column, moveDistance) {
                 belowPosition   = belowClassArray[2],
                 belowValue      = belowClassArray[1].slice(5);
             if (belowValue === currentValue) {
-                $tileBelow.attr('class', function (index, attr) {
-                    return `tile value${belowValue * 2} ${belowPosition}`;
-                });
+                $tileBelow.children().text((index, text) => belowValue * 2);
+                $tileBelow.attr('class', (index, attr) => `tile value${belowValue * 2} ${belowPosition}`);
                 tile.animate({marginTop: '+=' + (ij - row + 1) * moveDistance + 'px'}, 100);
                 return true;
             }
@@ -51,9 +51,8 @@ function tryMergeCase1(tile, direction, ij, row, column, moveDistance) {
                 leftPosition   = leftClassArray[2],
                 leftValue      = leftClassArray[1].slice(5);
             if (leftValue === currentValue) {
-                $tileLeft.attr('class', function (index, attr) {
-                    return `tile value${leftValue * 2} ${leftPosition}`;
-                });
+                $tileLeft.children().text((index, text) => leftValue * 2);
+                $tileLeft.attr('class', (index, attr) => `tile value${leftValue * 2} ${leftPosition}`);
                 tile.animate({marginLeft: '-=' + (column - ij + 1) * moveDistance + 'px'}, 100);
                 return true;
             }
@@ -65,9 +64,8 @@ function tryMergeCase1(tile, direction, ij, row, column, moveDistance) {
                 rightPosition   = rightClassArray[2],
                 rightValue      = rightClassArray[1].slice(5);
             if (rightValue === currentValue) {
-                $tileRight.attr('class', function (index, attr) {
-                    return `tile value${rightValue * 2} ${rightPosition}`;
-                });
+                $tileRight.children().text((index, text) => rightValue * 2);
+                $tileRight.attr('class', (index, attr) => `tile value${rightValue * 2} ${rightPosition}`);
                 tile.animate({marginLeft: '+=' + (column - ij + 1) * moveDistance + 'px'}, 100);
                 return true;
             }
@@ -100,9 +98,8 @@ function tryMergeCase2(tile, direction, row, column, moveDistance) {
                 aboveValue      = aboveClassArray[1].slice(5);
 
             if (aboveValue === currentValue) {
-                $tileAbove.attr('class', function (index, attr) {
-                    return `tile value${aboveValue * 2} ${abovePosition}`;
-                });
+                $tileAbove.children().text((index, text) => aboveValue * 2);
+                $tileAbove.attr('class', (index, attr) => `tile value${aboveValue * 2} ${abovePosition}`);
                 tile.animate({marginTop: `-=${moveDistance}px`}, 100);
                 return true;
             }
@@ -117,9 +114,8 @@ function tryMergeCase2(tile, direction, row, column, moveDistance) {
                 belowValue      = belowClassArray[1].slice(5);
 
             if (belowValue === currentValue) {
-                $tileBelow.attr('class', function (index, attr) {
-                    return `tile value${belowValue * 2} ${belowPosition}`;
-                });
+                $tileBelow.children().text((index, text) => belowValue * 2);
+                $tileBelow.attr('class', (index, attr) => `tile value${belowValue * 2} ${belowPosition}`);
                 tile.animate({marginTop: `+=${moveDistance}px`}, 100);
                 return true;
             }
@@ -132,9 +128,8 @@ function tryMergeCase2(tile, direction, row, column, moveDistance) {
                 leftValue      = leftClassArray[1].slice(5);
 
             if (leftValue === currentValue) {
-                $tileLeft.attr('class', function (index, attr) {
-                    return `tile value${leftValue * 2} ${leftPosition}`;
-                });
+                $tileLeft.children().text((index, text) => leftValue * 2);
+                $tileLeft.attr('class', (index, attr) => `tile value${leftValue * 2} ${leftPosition}`);
                 tile.animate({marginLeft: `-=${moveDistance}px`}, 100);
                 return true;
             }
@@ -147,9 +142,8 @@ function tryMergeCase2(tile, direction, row, column, moveDistance) {
                 rightValue      = rightClassArray[1].slice(5);
 
             if (rightValue === currentValue) {
-                $tileRight.attr('class', function (index, attr) {
-                    return `tile value${rightValue * 2} ${rightPosition}`;
-                });
+                $tileRight.children().text((index, text) => rightValue * 2);
+                $tileRight.attr('class', (index, attr) => `tile value${rightValue * 2} ${rightPosition}`);
                 tile.animate({marginLeft: `+=${moveDistance}px`}, 100);
                 return true;
             }

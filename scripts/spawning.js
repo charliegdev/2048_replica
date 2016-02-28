@@ -17,6 +17,7 @@ function spawnNewTile() {
     let $newTile  = $("<div>", {class: "tile value2"}),
         className = rowNum + '' + colNum;
     $newTile.addClass(className);
+    $newTile.append("<div class='tileNumber'>2</div>");
     $('#gameBoard').append($newTile);
 
     // move the tile to its location.
@@ -49,7 +50,9 @@ function spawnTwoNewTiles() {
         $newTile2  = $("<div>", {class: "tile value2"}),
         className2 = rowNum2 + '' + colNum2;
     $newTile1.addClass(className1);
+    $newTile1.append("<div class='tileNumber'>2</div>");
     $newTile2.addClass(className2);
+    $newTile2.append("<div class='tileNumber'>2</div>");
     $gameBoard.append($newTile1);
     $gameBoard.append($newTile2);
 

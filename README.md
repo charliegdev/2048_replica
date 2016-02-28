@@ -9,9 +9,9 @@ The project is not done yet, but you can view the source code here!
 - Tile movement
 - Collision detection 
 - Tile merge algorithm
+- Display Correct Numbers in Tiles
 
 ## Goals
-- [ ] Display correct number in tile
 - [ ] Score
 - [ ] Github page
 

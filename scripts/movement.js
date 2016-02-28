@@ -150,6 +150,7 @@ function moveAllTiles(event) {
     function moveToEdge(tile, direction, rowNum, columnNum) {
         let isThisTileMoved = false;
         switch (direction) {
+
             case 'up':
                 for (let i = 0; i < rowNum; i++) {
                     if ($(`.${i}${columnNum}`).length === 0) {

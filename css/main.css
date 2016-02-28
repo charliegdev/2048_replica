@@ -188,3 +188,13 @@ h3 {
 .value32 {
     background-color : #777620;
 }
+
+.tileNumber {
+    text-align        : center;
+    font-size         : 2em;
+    position          : relative;
+    top               : 50%;
+    transform         : translateY(-50%);
+    -webkit-transform : translateY(-50%);
+/ / vertical-align: center;
+}
