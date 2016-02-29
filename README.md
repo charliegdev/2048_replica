@@ -3,6 +3,8 @@ This is my own replica of the popular game [2048](https://gabrielecirulli.github
 I have written all the source code from the ground up (not including jQuery library, of course).
 The project is not done yet, but you can view the source code here!
 
+You can view the live version [here](http://charliegdev.github.io/2048_replica/).
+
 ## Progress
 - UI (mostly) 
 - Tile Spawning
