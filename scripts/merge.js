@@ -106,10 +106,8 @@ function tryMergeCase2(tile, direction, row, column, moveDistance) {
             return false;
 
         case 'down':
-            let $tileBelow = $(`.${parseInt(row) + 1}${column}`);
-            console.log($tileBelow);
-
-            let belowClassArray = $tileBelow.attr('class').split(' '),
+            let $tileBelow      = $(`.${parseInt(row) + 1}${column}`),
+                belowClassArray = $tileBelow.attr('class').split(' '),
                 belowPosition   = belowClassArray[2],
                 belowValue      = belowClassArray[1].slice(5);
 
