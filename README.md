@@ -7,8 +7,8 @@ I wrote it in HTML, CSS, Javascript (ECMAScript 6) and jQuery. Everything (excep
 The project is not entirely finished yet, but you can view the source code here, and click the link
 above to see the work in progress.
 
-Because of ECMAScript 6's compatibility issues, currently the game does not support Safari. This may be fixed in the future; but
-for now, please view the game using Chrome, Firefox or IE.
+ES 2015 once caused compatibility problems on Safari and IE; as a result, I transpiled the source code from ES 2015 to ES 5 using Babel. 
+Now the game should run fine on all modern desktop browsers.
 
 ## Progress
 - UI (mostly) 
@@ -18,6 +18,7 @@ for now, please view the game using Chrome, Firefox or IE.
 - Tile merge algorithm
 - Display Correct Numbers in Tiles
 - Github page
+- Transpile
 
 ## Goals
 - [ ] Score
@@ -35,5 +36,3 @@ for now, please view the game using Chrome, Firefox or IE.
 - Arrow functions
 - Template literals
 
-The new features of ECMAScript 6 used in this game do not introduce fundemental change, and it can be reversed to ECMAScript 5 if 
-it's necessary.
