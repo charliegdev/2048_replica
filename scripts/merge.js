@@ -89,6 +89,7 @@ function tryMergeCase2(tile, direction, row, column, moveDistance) {
      +---+
      */
     "use strict";
+
     let currentValue = tile.attr('class').split(' ')[1].slice(5);
     switch (direction) {
         case 'up':

@@ -1,19 +1,22 @@
+"use strict";
+
 /**
  * Created by charlieguan on 2016-02-23.
  */
 function moveAllTiles(event) {
     "use strict";
-    const MOVE_DISTANCE = 109;
-    
-    let isAnyTileMoved  = false,
-          $zeroRow      = $("[class*=' 0']"),
-          $firstRow     = $("[class*=' 1']"),
-          $secondRow    = $("[class*=' 2']"),
-          $thirdRow     = $("[class*=' 3']"),
-          $zeroColumn   = $("[class$='0']"),
-          $firstColumn  = $("[class$='1']"),
-          $secondColumn = $("[class$='2']"),
-          $thirdColumn  = $("[class$='3']");
+
+    var MOVE_DISTANCE = 109;
+
+    var isAnyTileMoved = false,
+        $zeroRow = $("[class*=' 0']"),
+        $firstRow = $("[class*=' 1']"),
+        $secondRow = $("[class*=' 2']"),
+        $thirdRow = $("[class*=' 3']"),
+        $zeroColumn = $("[class$='0']"),
+        $firstColumn = $("[class$='1']"),
+        $secondColumn = $("[class$='2']"),
+        $thirdColumn = $("[class$='3']");
 
     switch (event.which) {
         // up
@@ -62,20 +65,22 @@ function moveAllTiles(event) {
     }
 
     function moveOneTile(index) {
-        let currentPosition = {
-                row   : null,
-                column: null
-            },
-            // since this function is called inside .each(), 'this' refers to the DOM element.
-            $this           = $(this), // jshint ignore: line
-            oldClassName,
-            newClassName;
+        var currentPosition = {
+            row: null,
+            column: null
+        },
+
+        // since this function is called inside .each(), 'this' refers to the DOM element.
+        $this = $(this),
+            // jshint ignore: line
+        oldClassName = undefined,
+            newClassName = undefined;
 
         // get the 1st and 2nd digit of the current coordinate class name
-        currentPosition.row    = $this.attr('class').split(' ')[2][0];
+        currentPosition.row = $this.attr('class').split(' ')[2][0];
         currentPosition.column = $this.attr('class').split(' ')[2][1];
 
-        oldClassName = `${currentPosition.row}${currentPosition.column}`;
+        oldClassName = "" + currentPosition.row + currentPosition.column;
         $this.removeClass(oldClassName);
         switch (event.which) {
             // up
@@ -83,8 +88,7 @@ function moveAllTiles(event) {
                 if (currentPosition.row > 0) {
                     /*
                      Press 'up':
-
-                     Start:                 Step 1:                         Step 2:
+                      Start:                 Step 1:                         Step 2:
                      merge 3rd row          Double value and stack          Delete stacked tile
                      +---+                  +------+                        +---+
                      | 8 |                  | 8    |                        | 8 |
@@ -96,12 +100,12 @@ function moveAllTiles(event) {
                      | 2 |                  | 0    |                        | 0 |
                      +---+                  +------+                        +---+
                      */
-                    let newRow = moveToEdge($this, 'up', currentPosition.row, currentPosition.column);
+                    var newRow = moveToEdge($this, 'up', currentPosition.row, currentPosition.column);
                     if (newRow === -1) {
                         $this.remove();
                     } else {
                         currentPosition.row = newRow;
-                        newClassName        = `${currentPosition.row}${currentPosition.column}`;
+                        newClassName = "" + currentPosition.row + currentPosition.column;
                         $this.addClass(newClassName);
                     }
                 }
@@ -109,12 +113,12 @@ function moveAllTiles(event) {
             // down
             case 40:
                 if (currentPosition.row < 3) {
-                    let newRow = moveToEdge($this, 'down', currentPosition.row, currentPosition.column);
+                    var newRow = moveToEdge($this, 'down', currentPosition.row, currentPosition.column);
                     if (newRow === -1) {
                         $this.remove();
                     } else {
                         currentPosition.row = newRow;
-                        newClassName        = `${currentPosition.row}${currentPosition.column}`;
+                        newClassName = "" + currentPosition.row + currentPosition.column;
                         $this.addClass(newClassName);
                     }
                 }
@@ -122,12 +126,12 @@ function moveAllTiles(event) {
             // left
             case 37:
                 if (currentPosition.column > 0) {
-                    let newColumn = moveToEdge($this, 'left', currentPosition.row, currentPosition.column);
+                    var newColumn = moveToEdge($this, 'left', currentPosition.row, currentPosition.column);
                     if (newColumn === -1) {
                         $this.remove();
                     } else {
                         currentPosition.column = newColumn;
-                        newClassName           = `${currentPosition.row}${currentPosition.column}`;
+                        newClassName = "" + currentPosition.row + currentPosition.column;
                         $this.addClass(newClassName);
                     }
                 }
@@ -135,12 +139,12 @@ function moveAllTiles(event) {
             // right
             case 39:
                 if (currentPosition.column < 3) {
-                    let newColumn = moveToEdge($this, 'right', currentPosition.row, currentPosition.column);
+                    var newColumn = moveToEdge($this, 'right', currentPosition.row, currentPosition.column);
                     if (newColumn === -1) {
                         $this.remove();
                     } else {
                         currentPosition.column = newColumn;
-                        newClassName           = `${currentPosition.row}${currentPosition.column}`;
+                        newClassName = "" + currentPosition.row + currentPosition.column;
                         $this.addClass(newClassName);
                     }
                 }
@@ -149,12 +153,12 @@ function moveAllTiles(event) {
     }
 
     function moveToEdge(tile, direction, rowNum, columnNum) {
-        let isThisTileMoved = false;
+        var isThisTileMoved = false;
         switch (direction) {
 
             case 'up':
-                for (let i = 0; i < rowNum; i++) {
-                    if ($(`.${i}${columnNum}`).length === 0) {
+                for (var i = 0; i < rowNum; i++) {
+                    if ($("." + i + columnNum).length === 0) {
                         // $('.xy').length === 0 means no tile is currently occupying the xy grid.
                         if (i > 0) {
                             /*
@@ -195,7 +199,7 @@ function moveAllTiles(event) {
                          | 0 |                          | 4 |
                          +---+                          +---+
                          */
-                        tile.animate({marginTop: '-=' + (rowNum - i) * MOVE_DISTANCE + 'px'}, 100);
+                        tile.animate({ marginTop: '-=' + (rowNum - i) * MOVE_DISTANCE + 'px' }, 100);
                         isAnyTileMoved = true;
                         return i;
                     }
@@ -224,8 +228,8 @@ function moveAllTiles(event) {
                 return rowNum;
 
             case 'down':
-                for (let i = 3; i > rowNum; i--) {
-                    if ($(`.${i}${columnNum}`).length === 0) {
+                for (var i = 3; i > rowNum; i--) {
+                    if ($("." + i + columnNum).length === 0) {
                         if (i < 3) {
                             isThisTileMoved = tryMergeCase1(tile, 'down', i, rowNum, columnNum, MOVE_DISTANCE);
                             if (isThisTileMoved === true) {
@@ -234,7 +238,7 @@ function moveAllTiles(event) {
                                 return -1;
                             }
                         }
-                        tile.animate({marginTop: '+=' + (i - rowNum) * MOVE_DISTANCE + 'px'}, 100);
+                        tile.animate({ marginTop: '+=' + (i - rowNum) * MOVE_DISTANCE + 'px' }, 100);
                         isAnyTileMoved = true;
                         return i;
                     }
@@ -249,8 +253,8 @@ function moveAllTiles(event) {
                 return rowNum;
 
             case 'left':
-                for (let j = 0; j < columnNum; j++) {
-                    if ($(`.${rowNum}${j}`).length === 0) {
+                for (var j = 0; j < columnNum; j++) {
+                    if ($("." + rowNum + j).length === 0) {
                         if (j > 0) {
                             isThisTileMoved = tryMergeCase1(tile, 'left', j, rowNum, columnNum, MOVE_DISTANCE);
                             if (isThisTileMoved === true) {
@@ -259,7 +263,7 @@ function moveAllTiles(event) {
                                 return -1;
                             }
                         }
-                        tile.animate({marginLeft: '-=' + (columnNum - j) * MOVE_DISTANCE + 'px'}, 100);
+                        tile.animate({ marginLeft: '-=' + (columnNum - j) * MOVE_DISTANCE + 'px' }, 100);
                         isAnyTileMoved = true;
                         return j;
                     }
@@ -274,8 +278,8 @@ function moveAllTiles(event) {
                 return columnNum;
 
             case 'right':
-                for (let j = 3; j > columnNum; j--) {
-                    if ($(`.${rowNum}${j}`).length === 0) {
+                for (var j = 3; j > columnNum; j--) {
+                    if ($("." + rowNum + j).length === 0) {
                         if (j < 3) {
                             isThisTileMoved = tryMergeCase1(tile, 'right', j, rowNum, columnNum, MOVE_DISTANCE);
                             if (isThisTileMoved === true) {
@@ -284,7 +288,7 @@ function moveAllTiles(event) {
                                 return -1;
                             }
                         }
-                        tile.animate({marginLeft: '+=' + (j - columnNum) * MOVE_DISTANCE + 'px'}, 100);
+                        tile.animate({ marginLeft: '+=' + (j - columnNum) * MOVE_DISTANCE + 'px' }, 100);
                         isAnyTileMoved = true;
                         return j;
                     }
@@ -300,4 +304,4 @@ function moveAllTiles(event) {
         }
     }
 }
-
+//# sourceMappingURL=movement.js.map

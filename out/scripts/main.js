@@ -1,3 +1,5 @@
+"use strict";
+
 /**
  * Created by charlieguan on 2016-02-13.
  */
@@ -8,9 +10,9 @@
  */
 $(document).ready(main);
 function main() {
-    "use strict";
-    spawnTwoNewTiles();
-    $(document).keydown(moveAllTiles);
+  "use strict";
+
+  spawnTwoNewTiles();
+  $(document).keydown(moveAllTiles);
 }
-
-
+//# sourceMappingURL=main.js.map
