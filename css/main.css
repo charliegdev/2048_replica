@@ -1,12 +1,11 @@
-html {
-    background      : url("../img/FLUPER.RU_bumaga_tekstura_kletki_svetlyy.jpg") no-repeat center fixed !important;
-    background-size : cover;
+* {
+    box-sizing : content-box;
 }
 
 h1 {
     font-size             : 4em !important;
     padding               : 2px 5px;
-    border                : 5px solid #1DC278;
+    border                : 5px solid;
     -webkit-border-radius : 10px;
     -moz-border-radius    : 10px;
     border-radius         : 10px;
@@ -20,9 +19,8 @@ h3 {
     font-size : 1.2em;
 }
 
-#allContentContainer {
-    width  : 500px;
-    margin : auto;
+.container {
+    max-width : 600px;
 }
 
 #header h1 {
@@ -30,7 +28,6 @@ h3 {
     float          : left;
     vertical-align : middle;
     margin         : 20px 0 20px 0;
-    color          : #B9C21D;
 }
 
 #scores {
@@ -48,11 +45,11 @@ h3 {
     padding               : 5px;
     text-align            : center;
     width                 : 90px;
-    background-color      : #1DC278;
     -webkit-border-radius : 5px;
     -moz-border-radius    : 5px;
     border-radius         : 5px;
     box-shadow            : 2px 2px 1px gray;
+    background-color      : #DDDDDD;
 }
 
 #scores div h3 {
@@ -61,11 +58,9 @@ h3 {
 }
 
 .scoreLabels {
-    color : #CDD631;
 }
 
 #currentScoreValue, #bestScoreValue {
-    color : #E5F024;
 }
 
 .button {

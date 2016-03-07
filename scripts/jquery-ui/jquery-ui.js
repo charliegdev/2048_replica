@@ -5404,10 +5404,8 @@
                     }
 
                     cur        = this.items[j].item.offset()[posProperty];
-                    nearBottom = false;
-                    if (event[axis] - cur > this.items[j][sizeProperty] / 2) {
-                        nearBottom = true;
-                    }
+
+                    nearBottom = event[axis] - cur > this.items[j][sizeProperty] / 2;
 
                     if (Math.abs(event[axis] - cur) < dist) {
                         dist                  = Math.abs(event[axis] - cur);
@@ -6403,6 +6401,7 @@
 
             // Work around for rendering bug in IE (#5421)
             if (toHide.length) {
+                //noinspection SillyAssignmentJS
                 toHide.parent()[0].className = toHide.parent()[0].className;
             }
             this._trigger("activate", null, data);
@@ -8372,7 +8371,7 @@
                 this.uuid += 1;
                 id                = "dp" + this.uuid;
                 this._dialogInput = $("<input type='text' id='" + id +
-                    "' style='position: absolute; top: -100px; width: 0px;'/>");
+                    "' style='position: absolute; top: -100px; width: 0;'/>");
                 this._dialogInput.keydown(this._doKeyDown);
                 $("body").append(this._dialogInput);
                 inst = this._dialogInst = this._newInst(this._dialogInput, false);

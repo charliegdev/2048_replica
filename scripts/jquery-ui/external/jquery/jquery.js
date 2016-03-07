@@ -490,6 +490,7 @@
             // Support: IE<9
             // Handle iteration over inherited properties before own properties.
             if (jQuery.support.ownLast) {
+                //noinspection LoopStatementThatDoesntLoopJS
                 for (key in obj) {
                     return core_hasOwn.call(obj, key);
                 }
@@ -505,6 +506,7 @@
 
         isEmptyObject: function (obj) {
             var name;
+            //noinspection LoopStatementThatDoesntLoopJS
             for (name in obj) {
                 return false;
             }
@@ -1675,6 +1677,7 @@
                 function (a, b) {
                     var adown = a.nodeType === 9 ? a.documentElement : a,
                         bup   = b && b.parentNode;
+                    //noinspection JSBitwiseOperatorUsage
                     return a === bup || !!( bup && bup.nodeType === 1 && (
                             adown.contains ?
                                 adown.contains(bup) :
@@ -1726,6 +1729,7 @@
                                 0;
                         }
 
+                        //noinspection JSBitwiseOperatorUsage
                         return compare & 4 ? -1 : 1;
                     }
 
@@ -3467,6 +3471,7 @@
 
         // Support: IE<9
         // Iteration over object's inherited properties before its own.
+        //noinspection LoopStatementThatDoesntLoopJS
         for (i in jQuery(support)) {
             break;
         }
@@ -5262,6 +5267,7 @@
                 // Add which for click: 1 === left; 2 === middle; 3 === right
                 // Note: button is not normalized, so don't use it
                 if (!event.which && button !== undefined) {
+                    //noinspection JSBitwiseOperatorUsage
                     event.which = ( button & 1 ? 1 : ( button & 2 ? 3 : ( button & 4 ? 2 : 0 ) ) );
                 }
 
