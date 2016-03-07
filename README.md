@@ -11,8 +11,8 @@ ES 2015 once caused compatibility problems on Safari and IE; as a result, I tran
 Now the game should run fine on all modern desktop browsers.
 
 ## Progress
-- UI (mostly) 
-- Tile Spawning
+- UI with Bootstrap 
+- Tile spawning
 - Tile movement
 - Collision detection 
 - Tile merge algorithm
@@ -25,7 +25,6 @@ Now the game should run fine on all modern desktop browsers.
 - [ ] Mobile Page
 
 ## Issues
-- [ ] Might redo interface with Bootstrap
 - [ ] Block scope variable declarations cause compatibility issues in Safari
 - [ ] Zooming in/out the page will leave gaps between tile and board grid
 - [ ] The current way of tile movement utilize marginTop/marginLeft, that might be improved
