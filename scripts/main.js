@@ -11,6 +11,8 @@ function main() {
     "use strict";
     spawnTwoNewTiles();
     $(document).keydown(moveAllTiles);
+
+    $('#newGameButton').click(() => { location.reload() });
 }
 
 

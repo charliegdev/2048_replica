@@ -14,5 +14,9 @@ function main() {
 
   spawnTwoNewTiles();
   $(document).keydown(moveAllTiles);
+
+  $('#newGameButton').click(function () {
+    location.reload();
+  });
 }
 //# sourceMappingURL=main.js.map
