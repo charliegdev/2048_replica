@@ -12,7 +12,9 @@ function main() {
     spawnTwoNewTiles();
     $(document).keydown(moveAllTiles);
 
-    $('#newGameButton').click(() => { location.reload() });
+    $('#newGameButton').click(() => {
+        location.reload()
+    });
 }
 
 

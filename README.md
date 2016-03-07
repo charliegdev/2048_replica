@@ -2,12 +2,12 @@
 **You can view the live version [here](http://charliegdev.github.io/2048_replica/).**
 
 This is my own replica of the popular game [2048](https://gabrielecirulli.github.io/2048/).
-I wrote it in HTML, CSS, Javascript (ECMAScript 6) and jQuery. Everything (except jQuery library) is written from scratch.
+I wrote it in HTML, CSS and Javascript (ECMAScript 6), with jQuery and Bootstrap.
 
 The project is not entirely finished yet, but you can view the source code here, and click the link
 above to see the work in progress.
 
-ES 2015 once caused compatibility problems on Safari and IE; as a result, I transpiled the source code from ES 2015 to ES 5 using Babel. 
+ES 6 once caused compatibility problems on Safari and IE; as a result, I transpiled the source code from ES 6 to ES 5.1 using Babel. 
 Now the game should run fine on all modern desktop browsers.
 
 ## Progress
@@ -25,7 +25,6 @@ Now the game should run fine on all modern desktop browsers.
 - [ ] Mobile Page
 
 ## Issues
-- [ ] Block scope variable declarations cause compatibility issues in Safari
 - [ ] Zooming in/out the page will leave gaps between tile and board grid
 - [ ] The current way of tile movement utilize marginTop/marginLeft, that might be improved
 
