@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=2">
+
     <link rel="stylesheet" href="css/bootstrap/bootstrap.css">
     <link rel="stylesheet" href="css/bootstrap/bootstrap-theme.css">
     <link rel="stylesheet" href="css/main.css">
@@ -12,8 +14,8 @@
     <title>2048 Replica</title>
 </head>
 <body>
-    <div class="container">
-        <div id="header">
+    <div class="container well well-lg">
+        <div id="header" class="row">
             <h1>2048</h1>
             <div id="scores">
                 <div id="bestScore">
@@ -28,12 +30,15 @@
         </div>
 
         <div id="gameIntro">
-            <h3 id="introText">A Replica of the popular <a href="https://gabrielecirulli.github.io/2048/"
-                                                           target="_blank">2048</a> game</h3>
-            <button type="button" class="btn btn-primary" id="newGameButton">New Game</button>
+            <span id="introText" class="navbar-brand">A Replica of the popular <a href="https://gabrielecirulli.github.io/2048/"
+                                                           target="_blank">2048</a> game</span>
+            <ul class="nav navbar-nav navbar-right">
+                <button type="button" class="btn btn-primary" id="newGameButton">New Game</button>
+            </ul>
+
         </div>
 
-        <div id="gameBoard">
+        <div id="gameBoard" class="row">
             <div class="boardRow">
                 <div class="boardCell"></div>
                 <div class="boardCell"></div>
@@ -60,8 +65,8 @@
             </div>
         </div>
 
-        <div id="footer">
-            <h3><a href="https://github.com/charliegdev/2048_replica">Source code</a> is written in ES 2015, and
+        <div id="footer" class="row">
+            <h3><a href="https://github.com/charliegdev/2048_replica">Source code</a> is written in ES 6, then
                 transpiled to ES 5 using Babel. </h3>
         </div>
     </div>
