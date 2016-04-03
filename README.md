@@ -1,6 +1,8 @@
 # 2048 Replica
 **You can view the live version [here](http://charliegdev.github.io/2048_replica/).**
+
 ![img](img/2048_3.png)
+
 This is my own replica of the popular game [2048](https://gabrielecirulli.github.io/2048/).
 I wrote it in HTML, CSS and Javascript (ECMAScript 6), with jQuery and Bootstrap.
 
